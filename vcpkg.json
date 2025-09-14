@@ -1,0 +1,14 @@
+{
+  "name": "skyrimrendering",
+  "version-string": "1.0.0",
+  "description": "Skyrim-Rendering",
+  "homepage": "https://github.com/aers/skyrim-rendering/",
+  "license": "MIT",
+  "dependencies": [
+    "rsm-binary-io",
+    "spdlog",
+    "xbyak",
+    "safetyhook"
+  ],
+  "builtin-baseline": "4bb07a326d9b9bce3703272a509e5bc25dd9cfd5"
+}
