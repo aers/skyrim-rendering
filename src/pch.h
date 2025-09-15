@@ -57,3 +57,9 @@ namespace logger = SKSE::log;
 using namespace std::literals;
 
 #include "Version.h"
+
+#ifdef SKYRIM_AE
+#    define VAR_NUM(se, ae) ae
+#else
+#    define VAR_NUM(se, ae) se
+#endif

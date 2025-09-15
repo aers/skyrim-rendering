@@ -1,6 +1,9 @@
 #include <spdlog/sinks/basic_file_sink.h>
 #include <spdlog/sinks/msvc_sink.h>
 
+#include "culling/BSCullingProcess.h"
+#include "culling/NiCullingProcess.h"
+
 void OpenLog() {
     auto path = SKSE::log::log_directory();
 
@@ -34,6 +37,11 @@ extern "C" __declspec(dllexport) void __stdcall Initialize()
 
     logger::info("skyrim-rendering v{}.{}.{} PreLoad"sv, Version::MAJOR, Version::MINOR, Version::PATCH);
 
+    auto& trampoline = SKSE::GetTrampoline();
+    trampoline.create(1 << 11);
+
+    Culling::NiCullingProcess::InstallHooks();
+    Culling::BSCullingProcess::InstallHooks();
 }
 
 extern "C" __declspec(dllexport) constinit auto SKSEPlugin_Version = []() {
