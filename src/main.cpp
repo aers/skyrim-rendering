@@ -1,8 +1,10 @@
 #include <spdlog/sinks/basic_file_sink.h>
 #include <spdlog/sinks/msvc_sink.h>
 
+#include "accumulator/BSShaderAccumulator.h"
 #include "culling/BSCullingProcess.h"
 #include "culling/NiCullingProcess.h"
+#include "draw/DrawWorld.h"
 
 void OpenLog() {
     auto path = SKSE::log::log_directory();
@@ -42,6 +44,9 @@ extern "C" __declspec(dllexport) void __stdcall Initialize()
 
     Culling::NiCullingProcess::InstallHooks();
     Culling::BSCullingProcess::InstallHooks();
+    Accumulator::BSShaderAccumulator::InstallHooks();
+    Draw::DrawWorld::InstallHooks();
+
 }
 
 extern "C" __declspec(dllexport) constinit auto SKSEPlugin_Version = []() {
